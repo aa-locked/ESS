@@ -1,0 +1,23 @@
+.appbarheading {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-color: #949798; 
+    padding: 5px;
+    position: relative;
+}
+
+.logo {
+    width: 60px; 
+    height: 60px;
+    margin-right: auto; 
+    margin-left: 10px;
+}
+
+.appbarhead {    
+    font-size: 40px; 
+    text-align: center;
+    color: white;
+    flex-grow: 1; 
+}
+
