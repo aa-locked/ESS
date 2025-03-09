@@ -103,7 +103,7 @@ const LeaveReq = () => {
                     <div className='row'>
                         <div className="col-sm-3 mb-3">
                             <label className="form-label">Reason For Leave</label>
-                            <Field type="text" name="reasonforleave" className="form-control" readOnly />
+                            <Field type="text" name="reasonforleave" className="form-control"  />
                             <ErrorMessage name="reasonforleave" component="div" className="text-danger" />
                         </div>
                         <div className="col-sm-3 mb-3">
