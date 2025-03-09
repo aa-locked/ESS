@@ -35,11 +35,14 @@
 // export default App
 
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import AppBar from './component/appbarcomponent/AppBar'
 import AppDiv from './component/appbarcomponent/AppDiv'
+import { Route, Routes } from 'react-router-dom'
+import Activity from './pages/Activity'
+import Attendance from './pages/Attendance'
+import NotFound from './error/404'
+import LeaveReq from './pages/LeaveReq'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -48,6 +51,12 @@ function App() {
     <>
       <AppDiv/>
       <AppBar/>
+      <Routes>
+        <Route path='/' element={<Activity />} />
+        <Route path='/attendance' element={<Attendance />} />
+        <Route path='/leave-req' element={<LeaveReq />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </>
   )
 }

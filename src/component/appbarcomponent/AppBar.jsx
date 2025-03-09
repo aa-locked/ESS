@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { NavLink } from 'react-router-dom';
 
 const AppBar = () => {
   return (
@@ -12,12 +13,12 @@ const AppBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Activity</Nav.Link>
-            <Nav.Link href="">Attendance</Nav.Link>
+            <NavLink className="nav-link" to="/">Activity</NavLink>
+            <NavLink className="nav-link" to="/attendance">Attendance</NavLink>
             <NavDropdown title="Leave" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Leave Availed</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Leave Balance</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Leave Request/Approval</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="leave-req">Leave Request/Approval</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="TDS" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Declaration</NavDropdown.Item>
@@ -30,7 +31,7 @@ const AppBar = () => {
               <NavDropdown.Item href="#action/3.3">Employee Tracker</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">PF Contribution</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="">TA/OD Details</Nav.Link>
+            <NavLink className="nav-link" to="">TA/OD Details</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
