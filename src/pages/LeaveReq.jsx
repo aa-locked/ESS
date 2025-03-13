@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 const LeaveReq = () => {
     const validationSchema = Yup.object({
         empcode: Yup.string().required("Employee Code is Required!"),
@@ -12,7 +13,6 @@ const LeaveReq = () => {
         startdate:Yup.string().required("Start Date is Required!"),
         enddate:Yup.string().required("End Date is Required!"),
         ttldays:Yup.string().required("Total Days is Required!"),
-        reasondoc:Yup.string().required("Ducument is Required!"),
         submitto:Yup.string().required("Submit To is Required!"),
       });
   return (
@@ -34,13 +34,35 @@ const LeaveReq = () => {
                 startdate:"",
                 enddate:"",
                 ttldays:0,
-                reasondoc:"",
                 submitto:"-1",
               }}
               validationSchema={validationSchema}
               onSubmit={(values, { resetForm }) => {
                 console.log("Form Data:", values);
                 alert("Registration Successful!");
+                let postdata = {
+                  "EmpCode": values.empcode,
+                  "EmpName": values.empname,
+                  "Designation": values.designation,
+                  "Department": values.department,
+                  "Site": "MUMB",
+                  "PLCr": values.plcr,
+                  "MLCr": values.mlcr,
+                  "LeaveNature": values.natureofleave,
+                  "LeaveReason": values.reasonforleave,
+                  "StartDate": values.startdate,
+                  "EndDate": values.enddate,
+                  "TotalDays": values.ttldays,
+                  "SubmitTo": values.submitto,
+                  "EmpLeaveReqid": "1"
+                }
+                 axios.post("https://67d2a19190e0670699be721d.mockapi.io/api/v1/Res",values)
+                 .then(res => {
+                  console.log(res);
+                 })
+                 .catch(err=>{
+                  console.log(err)
+                 })
                 resetForm();
               }}
             >
@@ -118,16 +140,11 @@ const LeaveReq = () => {
                         </div>
                         <div className="col-sm-3 mb-3">
                             <label className="form-label">Total Days</label>
-                            <Field type="number" name="ttldays" className="form-control" readOnly />
+                            <Field type="number" name="ttldays" className="form-control"  />
                             <ErrorMessage name="ttldays" component="div" className="text-danger" />
                         </div>
                     </div>
-                    <div className='row'>
-                        <div className="col-sm-3 mb-3">
-                            <label className="form-label">Document</label>
-                            <Field type="file" name="reasondoc" className="form-control" readOnly />
-                            <ErrorMessage name="reasondoc" component="div" className="text-danger" />
-                        </div>
+                    <div className='row'>                        
                         <div className="col-sm-3 mb-3">
                             <label className="form-label">Submit To</label>
                             <Field as="select" name="submitto" className="form-control">
