@@ -2,7 +2,12 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const LeaveReq = () => {
+
+  const indnev = useNavigate()
+
     const validationSchema = Yup.object({
         empcode: Yup.string().required("Employee Code is Required!"),
         empname: Yup.string().required("Employee Name is required!"),
@@ -41,24 +46,24 @@ const LeaveReq = () => {
                 console.log("Form Data:", values);
                 alert("Registration Successful!");
                 let postdata = {
-                  "EmpCode": values.empcode,
+                  "EmpCode": parseInt(values.empcode),
                   "EmpName": values.empname,
                   "Designation": values.designation,
                   "Department": values.department,
                   "Site": "MUMB",
-                  "PLCr": values.plcr,
-                  "MLCr": values.mlcr,
-                  "LeaveNature": values.natureofleave,
+                  "PLCr": parseInt(values.plcr),
+                  "MLCr": parseInt(values.mlcr),
+                  "LeaveNature": parseInt(values.natureofleave),
                   "LeaveReason": values.reasonforleave,
-                  "StartDate": values.startdate,
-                  "EndDate": values.enddate,
-                  "TotalDays": values.ttldays,
-                  "SubmitTo": values.submitto,
+                  "StartDate": Date(values.startdate),
+                  "EndDate": Date(values.enddate),
+                  "TotalDays": parseInt(values.ttldays),
+                  "SubmitTo": parseInt(values.submitto),
                   "EmpLeaveReqid": "1"
                 }
-                 axios.post("https://67d2a19190e0670699be721d.mockapi.io/api/v1/Res",values)
+                 axios.post("https://67d2a19190e0670699be721d.mockapi.io/api/v1/Res",postdata)
                  .then(res => {
-                  console.log(res);
+                  indnev("/leave-dtl")
                  })
                  .catch(err=>{
                   console.log(err)

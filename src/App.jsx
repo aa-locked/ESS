@@ -42,7 +42,9 @@ import { Route, Routes } from 'react-router-dom'
 import Activity from './pages/Activity'
 import Attendance from './pages/Attendance'
 import NotFound from './error/404'
-import LeaveReq from './pages/LeaveReq'
+import LeaveReq from './pages/leave/LeaveReq'
+import Index from './pages/leave/Index'
+import EditReq from './pages/leave/EditReq'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -54,7 +56,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Activity />} />
         <Route path='/attendance' element={<Attendance />} />
+        <Route path='/leave-dtl' element={<Index/>} />
         <Route path='/leave-req' element={<LeaveReq />} />
+        <Route path='/edit-leavereq/:leaveReqId' element={<EditReq/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>

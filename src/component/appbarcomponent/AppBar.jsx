@@ -16,7 +16,7 @@ const AppBar = () => {
             <NavLink className="nav-link" to="/">Activity</NavLink>
             <NavLink className="nav-link" to="/attendance">Attendance</NavLink>
             <NavDropdown title="Leave" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Leave Availed</NavDropdown.Item>
+              <NavDropdown.Item href="leave-dtl">Leave Availed</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Leave Balance</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="leave-req">Leave Request/Approval</NavDropdown.Item>
             </NavDropdown>
